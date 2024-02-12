@@ -1,0 +1,22 @@
+@startuml lesnikov_8
+
+left to right direction
+
+skinparam actorStyle awesome
+actor "Владелец" as owner
+actor "Квартиросъёмщик" as tenant
+
+package "Жилищное агенство"{
+    usecase "Предложить" as UC1
+    usecase "Сдать" as UC2
+
+    usecase "Подобрать" as UC3
+    usecase "Снять" as UC4
+}
+
+owner --> UC1
+owner --> UC2
+tenant --> UC3
+tenant --> UC4
+
+@enduml
