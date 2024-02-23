@@ -7,16 +7,22 @@ actor "Владелец" as owner
 actor "Квартиросъёмщик" as tenant
 
 package "Жилищное агенство"{
-    usecase "Предложить" as UC1
-    usecase "Сдать" as UC2
+    usecase "Предложить" as offer
+    usecase "Сдать" as lease
+    usecase "Убрать объявление" as remove
 
-    usecase "Подобрать" as UC3
-    usecase "Снять" as UC4
+    usecase "Подобрать" as find
+    usecase "Снять" as rent
+
+    usecase "Посмотреть договор(ы) аренды" as show
 }
 
-owner --> UC1
-owner --> UC2
-tenant --> UC3
-tenant --> UC4
+owner --> offer
+owner --> lease
+owner --> remove
+tenant --> find
+tenant --> rent
+owner --> show
+tenant --> show
 
 @enduml
