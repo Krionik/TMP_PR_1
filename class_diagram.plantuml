@@ -1,0 +1,28 @@
+@startuml use_case_diagram
+
+class "Пользователь" as user{
+    -show()
+}
+interface "Арендодатель" as owner{
+    -offer()
+    -lease()
+    -remove()
+}
+interface "Квартиросъёмщик" as tenant{
+    -find()
+    -rent()
+}
+class "Договор" as lease{}
+enum "Тип договора" as type_lease{
+    социальный
+    специализированный
+    комерческий
+    жилищного фонда
+}
+
+user<|--owner
+user<|--tenant
+user "2" o-left- "0..*" lease : принадлежит
+lease-down-type_lease
+
+@enduml

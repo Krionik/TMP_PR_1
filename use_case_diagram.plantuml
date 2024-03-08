@@ -1,0 +1,39 @@
+@startuml use_case_diagram
+
+actor :Владелец:/ as owner
+actor :Квартиросъёмщик:/ as tenant
+
+usecase (выставить предложение\nо квартире)/ as offer
+usecase (оформить аренду)/ as rent
+usecase (убрать объявление)/ as remove
+usecase (подобрать)/ as find
+usecase (посмотреть\nдоговоры аренды)/ as show
+usecase (согласовать\nдоговор аренды)/ as approve
+usecase (проверить\nналичие договора)/ as check
+usecase (предоставить фильтр\nпредложений)/ as filter
+usecase (согласовать\nсоциальный договор)/ as approve_social
+usecase (согласовать\nспециализированный договор)/ as approve_specialized
+usecase (согласовать\nкоммерческий договор)/ as approve_commercial
+usecase (согласовать договор\nжилищного фонда)/ as approve_fund
+
+owner-up-offer
+
+owner-remove
+remove-.>check:<<include>>
+
+tenant-rent
+rent-.>approve:<<include>>
+approve<|-down-approve_social
+approve<|-down-approve_specialized
+approve<|-down-approve_commercial
+approve<|-down-approve_fund
+rent-owner
+
+find-tenant
+find<-up.filter:<<extend>>
+filter-right.>show:<<extend>>
+
+tenant-up-show
+show-up-owner
+
+@enduml
